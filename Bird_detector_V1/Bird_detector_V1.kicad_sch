@@ -1,0 +1,220 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid 4b75f1c3-5053-433e-bd5d-76d0bd57854d)
+
+  (paper "A3")
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 236.22 122.555) (size 27.305 21.59) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 0 0 0 0.0000))
+    (uuid 39b31853-1309-4eac-91f5-4cfb610c74fa)
+    (property "Sheet name" "Power Management +BMS" (id 0) (at 236.22 121.8434 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "Power.kicad_sch" (id 1) (at 236.22 144.7296 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+  )
+
+  (sheet (at 195.58 107.95) (size 12.7 19.05) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 0 0 0 0.0000))
+    (uuid 53d9ee9c-cbfc-4d23-958e-21c179b699b3)
+    (property "Sheet name" "Other data+storage" (id 0) (at 195.58 107.2384 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "SDcard.kicad_sch" (id 1) (at 195.58 127.5846 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+  )
+
+  (sheet (at 195.58 66.675) (size 12.7 38.735) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 0 0 0 0.0000))
+    (uuid 94b5dc3a-5793-40ef-bc39-7863e8733196)
+    (property "Sheet name" "MCU+WIFI+BT" (id 0) (at 195.58 65.9634 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "MCU.kicad_sch" (id 1) (at 195.58 105.9946 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+  )
+
+  (sheet (at 210.185 66.675) (size 12.7 38.735) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 0 0 0 0.0000))
+    (uuid becfa44c-e22d-4533-8692-252bab5a0fb5)
+    (property "Sheet name" "Audio capture" (id 0) (at 210.185 65.9634 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "Audio.kicad_sch" (id 1) (at 210.185 105.9946 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+  )
+
+  (sheet (at 179.705 66.675) (size 12.7 38.735) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 0 0 0 0.0000))
+    (uuid eeacf02d-4c41-48a3-ad8c-71b7594c47c2)
+    (property "Sheet name" "GSM+GPS" (id 0) (at 179.705 65.9634 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "RF.kicad_sch" (id 1) (at 179.705 105.9946 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2" (page "2"))
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196" (page "3"))
+    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5" (page "4"))
+    (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3" (page "5"))
+    (path "/39b31853-1309-4eac-91f5-4cfb610c74fa" (page "6"))
+  )
+
+  (symbol_instances
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/d6fdde4a-79be-4b2e-8222-5006643004c9"
+      (reference "#PWR01") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/3db68b13-d25a-44b8-891d-5ab253aa9d83"
+      (reference "#PWR02") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/8f208280-69b6-4ac0-ba72-37eb1bba0894"
+      (reference "#PWR03") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/b4b41b9e-af44-4450-97c4-de69aca36fce"
+      (reference "#PWR04") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/e8872622-267e-4a5d-bd3f-355227d0c5d1"
+      (reference "#PWR05") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/0ddfcbd2-fb58-48e5-8862-ba885d3b5a18"
+      (reference "#PWR06") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/1e035dfb-f7d1-4cd7-a146-460e7e0ea26b"
+      (reference "#PWR07") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/9a40a4e2-73d0-4f24-ba19-669f0a8eecde"
+      (reference "#PWR08") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/c61e09b9-44bd-4d9f-b091-ffc113633229"
+      (reference "#PWR09") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/9e10f8f9-e2b9-4428-a7e9-1ec064247226"
+      (reference "#PWR010") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/e9c51483-a938-48ed-9b84-421a67259bd3"
+      (reference "#PWR011") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/f2ceb599-04d3-4769-8768-9f6a562f3aa9"
+      (reference "#PWR012") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/f7caf1dc-389b-44f9-9f2a-5f24d0b819d5"
+      (reference "#PWR013") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/c69f8fca-4fed-4d83-8d33-181c06f15d41"
+      (reference "#PWR014") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/0b6a0140-d1d0-4acf-9963-cf2e46ad4eac"
+      (reference "#PWR015") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/f0669255-899a-4401-bb76-0ff357c95b30"
+      (reference "#PWR016") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/499438f2-7089-4b85-8054-7141f924eb64"
+      (reference "#PWR017") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/975fc812-63ff-4001-bb43-8b963c74a017"
+      (reference "#PWR018") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d6241c72-9682-4b34-b73a-27a7362ed6c4"
+      (reference "#PWR019") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/b61461b3-a0e1-47d1-8e5b-c65851c8a178"
+      (reference "#PWR020") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/bbf1062b-9676-431a-983c-9c2fae81d8bb"
+      (reference "#PWR021") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/2bca36c6-42fa-40cc-b2f2-89802422b662"
+      (reference "#PWR022") (unit 1) (value "+1V8") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/f822fe88-81cc-48b3-9db7-2954576810c9"
+      (reference "#PWR023") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/36996a41-8422-4acd-9358-72adb787dcf0"
+      (reference "#PWR024") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/31fa421f-79b1-40c3-badb-a14175f35df1"
+      (reference "#PWR025") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/a194aff6-4d0c-4441-9a39-1752e58658ea"
+      (reference "#PWR026") (unit 1) (value "+3V8") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/b7e511f4-9ff4-4cfc-ba12-375fbddc5066"
+      (reference "#PWR027") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/3178b79d-a03e-463e-99d1-1463d190497f"
+      (reference "#PWR028") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/030888ac-2ee8-4d01-8cb6-a5f86738dfaa"
+      (reference "C1") (unit 1) (value "C_Small") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/ccb728d5-8308-4f28-8a45-3566f30f2afa"
+      (reference "C2") (unit 1) (value "C_Small") (footprint "Capacitor_SMD:C_0805_2012Metric")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/0f186daf-103e-4d37-bbdc-8c2bc2eeeb83"
+      (reference "C3") (unit 1) (value "220u") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/5d31c2cd-70dd-465f-99de-69d37b9c87b3"
+      (reference "C4") (unit 1) (value "10u") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/1f824831-6922-44c1-b96a-54e02bedc0e4"
+      (reference "C5") (unit 1) (value "100n") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/7502ff6b-0bd7-47c5-ab24-3d08aebc7649"
+      (reference "C6") (unit 1) (value "33p") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/600c35a5-cc18-469c-91ed-1e16ef2ebc3a"
+      (reference "C7") (unit 1) (value "10u") (footprint "")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/7d044dc7-9d77-45b9-95a6-44c8f68ed2d7"
+      (reference "IC1") (unit 1) (value "TXB0108PWR") (footprint "SOP65P640X120-20N")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/7214d5a1-4453-42a6-852d-f0b2d84fc615"
+      (reference "J1") (unit 1) (value "Conn_Coaxial") (footprint "Connector_Coaxial:SMA_Amphenol_901-143_Horizontal")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/4b9c7c29-fc82-44b0-b0dc-a8ba46989916"
+      (reference "J2") (unit 1) (value "Conn_Coaxial") (footprint "Connector_Coaxial:SMA_Amphenol_901-143_Horizontal")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/102a5b48-8891-4b8d-a44e-60dd1bf4e156"
+      (reference "J3") (unit 1) (value "Conn_Coaxial") (footprint "Connector_Coaxial:SMA_Amphenol_901-143_Horizontal")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/bf8da51d-4420-4ef4-a065-1ad983b27339"
+      (reference "J4") (unit 1) (value "USB_A") (footprint "Connector_USB:USB_A_Molex_105057_Vertical")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/2b29d8b0-3e8f-4235-9f08-a9fdc4cfb8d3"
+      (reference "J5") (unit 1) (value "SIM_Card_Shielded") (footprint "Z_mycustom_footprint_lib:78800-0001")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/85a2a902-54f8-436e-95cd-4c2e16de81d6"
+      (reference "J6") (unit 1) (value "USB_A") (footprint "Connector_USB:USB_A_Molex_105057_Vertical")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/544c71c7-57d9-4e3b-b362-f3bc0fa2f1b9"
+      (reference "U1") (unit 1) (value "ESP32-S3-MINI-1") (footprint "Espressif:ESP32-S3-MINI-1")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/75f7422e-74a2-4f3b-b4df-133f718b4fd5"
+      (reference "U2") (unit 1) (value "ESP32-S3-WROOM-1") (footprint "Espressif:ESP32-S3-WROOM-1")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/41f7effa-9464-41a3-b787-5ca12bd3a87e"
+      (reference "U3") (unit 1) (value "SIM808") (footprint "SamacSys_Parts:SIM808")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/ec149df3-05ba-4833-b745-2107bd0dc595"
+      (reference "U3") (unit 2) (value "SIM808") (footprint "SamacSys_Parts:SIM808")
+    )
+  )
+)
