@@ -1,0 +1,25 @@
+* C:\Users\beia\Documents\GitHub\Bird_Detector\LTSpice_simulations\power_switching.asc
+M1 N002 N005 BATT_in BATT_in PMOS
+V§Solar N001 0 PWL(0 6 0.1 15 0.2 15 0.3 0)
+VBus N005 0 5 Rser=0.01
+M2 N002 N007 N001 N001 PMOS
+R1 N007 0 1k
+R2 N005 0 100k
+D1 N005 BATT_in D
+R3 BATT_in 0 10
+V§Li_ion_cells BATT_out 0 4.2 Rser=0.075
+M3 N003 N005 N004 N004 PMOS
+M4 N003 N006 BATT_out BATT_out PMOS
+V§BMS_IC N006 0 0
+R4 N006 0 100k
+R5 N005 0 100k
+D2 N005 N004 D
+R6 N004 0 10
+.model D D
+.lib C:\Users\tehnic\Documents\LTspiceXVII\lib\cmp\standard.dio
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\tehnic\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 0.5 startup
+.backanno
+.end
