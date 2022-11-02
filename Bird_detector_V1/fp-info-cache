@@ -1,4 +1,4 @@
-22122905598390605
+22136306178425289
 Aesthetics
 BREADBOARD_SPACING
 BREADBOARD SPACING
@@ -231,16 +231,16 @@ SPARKFUN FLAME LOGO - 0.4" HEIGHT - SILKSCREEN
 0
 0
 Aesthetics
-SFE_LOGO_FLAME_.05
-SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
-SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
+SFE_LOGO_FLAME_.5
+SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
+SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
 0
 0
 0
 Aesthetics
-SFE_LOGO_FLAME_.5
-SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
-SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
+SFE_LOGO_FLAME_.05
+SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
+SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
 0
 0
 0
@@ -55958,6 +55958,20 @@ ESP32
 38
 38
 Espressif
+ESP32-MINI-1
+ESP32-MINI-1: https://www.espressif.com/sites/default/files/documentation/esp32-mini-1_datasheet_en.pdf
+ESP32-MINI-1
+0
+63
+55
+Espressif
+ESP32-MINI-1U
+ESP32-MINI-1U: https://www.espressif.com/sites/default/files/documentation/esp32-mini-1_datasheet_en.pdf
+ESP32-MINI-1U
+0
+63
+55
+Espressif
 ESP32-PICO-MINI-02
 ESP32-PICO-MINI-02: https://www.espressif.com/sites/default/files/documentation/esp32-pico-mini-02_datasheet_en.pdf
 ESP32-PICO-MINI-02
@@ -84236,14 +84250,14 @@ PTS526 SK15 SMTR2 LFS-1
 Switch
 0
 4
-4
+2
 SamacSys_Parts
 PTS526SM15SMTR2LFS
 PTS526 SM15 SMTR2 LFS-2
 Switch
 0
 4
-4
+2
 SamacSys_Parts
 QFN50P400X400X185-25N-D
 IIS328DQTR
@@ -84406,6 +84420,13 @@ Integrated Circuit
 5
 5
 SamacSys_Parts
+TO228P991X238-3N
+NDP0003B
+Integrated Circuit
+0
+3
+3
+SamacSys_Parts
 TO228P1042X238-3N
 TO228P1042X238-3N
 Integrated Circuit
@@ -84419,6 +84440,13 @@ Transistor
 0
 3
 3
+SamacSys_Parts
+TPS63020DSJR
+DSJ (R-PVSON-N14)
+Integrated Circuit
+0
+23
+23
 SamacSys_Parts
 USB1040GFLB
 USB1040-GF-L-B-1
@@ -93317,12 +93345,19 @@ Z_mycustom_footprint_lib
 1
 1
 Z_mycustom_footprint_lib
+5015 Keystone Electronics
+
+
+0
+1
+1
+Z_mycustom_footprint_lib
 78800-0001
+ SIM card holder
 
-
 0
-0
-0
+10
+7
 Z_mycustom_footprint_lib
 2002102255
 potentiometer 
@@ -93387,6 +93422,13 @@ Hole 0.6mm ( 2 holes )
 2
 2
 Z_mycustom_footprint_lib
+MEM2051-00-195-00
+Memory Card Connectors Micro SD Push Push, Open, SMT, 1.95mm profile, No Peg, T&R 
+
+0
+13
+10
+Z_mycustom_footprint_lib
 QFP-multi-0.5mm
 
 
@@ -93400,6 +93442,20 @@ RA12131100
 0
 2
 2
+Z_mycustom_footprint_lib
+THB001P
+
+
+0
+14
+11
+Z_mycustom_footprint_lib
+TPS63020
+
+
+0
+0
+0
 Z_mycustom_panelization
 mouse bites 2.5mm wide     6mm long    0.6mm holes     0.3mm apart streight edges
 

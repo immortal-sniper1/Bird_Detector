@@ -1,0 +1,22 @@
+Circuit: * D:\github-stuff\Bird_Detector\LTSpice_simulations\power_switching_full_MOSFET.asc
+
+Warning: Multiple definitions of model "testn" Type: Mos1
+Direct Newton iteration for .op point succeeded.
+
+Date: Wed Nov 02 10:50:48 2022
+Total elapsed time: 0.143 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2187
+traniter = 2162
+tranpoints = 1067
+accept = 1065
+rejected = 2
+matrix size = 11
+fillins = 0
+solver = Normal
+Matrix Compiler1: 668 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler2: 889 bytes object code size  0.1/0.2/[0.1]
+
