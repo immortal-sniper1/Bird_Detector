@@ -1,4 +1,4 @@
-22136306178425289
+22143497998475806
 Aesthetics
 BREADBOARD_SPACING
 BREADBOARD SPACING
@@ -231,16 +231,16 @@ SPARKFUN FLAME LOGO - 0.4" HEIGHT - SILKSCREEN
 0
 0
 Aesthetics
-SFE_LOGO_FLAME_.5
-SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
-SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
+SFE_LOGO_FLAME_.05
+SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
+SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
 0
 0
 0
 Aesthetics
-SFE_LOGO_FLAME_.05
-SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
-SPARKFUN FLAME LOGO - 0.05" HEIGHT - SILKSCREEN
+SFE_LOGO_FLAME_.5
+SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
+SPARKFUN FLAME LOGO - 0.5" HEIGHT - SILKSCREEN
 0
 0
 0
@@ -55921,21 +55921,21 @@ ESP32-C3-MINI-1: https://www.espressif.com/sites/default/files/documentation/esp
 ESP32-C3
 0
 61
-36
+53
 Espressif
 ESP32-C3-MINI-1U
 ESP32-C3-MINI-1U: https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf
 ESP32-C3
 0
 61
-36
+53
 Espressif
-ESP32-C3-MINI-1_Hand-Soldering
+ESP32-C3-MINI-1_HandSoldering
 ESP32-C3-MINI-1: https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf
 ESP32-C3
 0
 61
-36
+53
 Espressif
 ESP32-C3-WROOM-02
 ESP32-C3-WROOM-02: https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_en.pdf
@@ -55977,21 +55977,21 @@ ESP32-PICO-MINI-02: https://www.espressif.com/sites/default/files/documentation/
 ESP32-PICO-MINI-02
 0
 61
-36
+53
 Espressif
 ESP32-PICO-MINI-02U
 ESP32-PICO-MINI-02U: https://www.espressif.com/sites/default/files/documentation/esp32-pico-mini-02_datasheet_en.pdf
 ESP32-PICO-MINI-02U
 0
 61
-36
+53
 Espressif
-ESP32-PICO-MINI-02_Hand-Soldering
+ESP32-PICO-MINI-02_HandSoldering
 ESP32-PICO-MINI-02: https://www.espressif.com/sites/default/files/documentation/esp32-pico-mini-02_datasheet_en.pdf
 ESP32-PICO-MINI-02
 0
 61
-36
+53
 Espressif
 ESP32-S2-DevKitM
 ESP32-S2 general-purpose development board
@@ -56005,21 +56005,21 @@ ESP32-S2-MINI-1 and ESP32-S2-MINI-1U: https://www.espressif.com/sites/default/fi
 ESP32-S2
 0
 73
-46
+65
 Espressif
 ESP32-S2-MINI-1U
 ESP32-S2-MINI-1 and ESP32-S2-MINI-1U: https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf
 ESP32-S2
 0
 73
-46
+65
 Espressif
-ESP32-S2-MINI-1_Hand-Soldering
+ESP32-S2-MINI-1_HandSoldering
 ESP32-S2-MINI-1 and ESP32-S2-MINI-1U: https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf
-ESP32-S2
+ESP32-S2 Hand Soldering
 0
 73
-46
+65
 Espressif
 ESP32-S2-SOLO
 ESP32-S2-SOLO https://www.espressif.com/sites/default/files/documentation/esp32-s2-solo_esp32-s2-solo-u_datasheet_en.pdf
@@ -56061,14 +56061,14 @@ ESP32-S3-MINI-1
 esp32-s3
 0
 73
-46
+65
 Espressif
 ESP32-S3-MINI-1U
 ESP32-S3-MINI-1 and ESP32-S3-MINI-1U
 esp32-s3
 0
 73
-46
+65
 Espressif
 ESP32-S3-WROOM-1
 ESP32-S3-WROOM-1 is a powerful, generic Wi-Fi + Bluetooth LE MCU modules that have Dual core CPU , a rich set of peripherals, provides acceleration for neural network computing and signal processing workloads. They are an ideal choice for a wide variety of application scenarios related to AI + Internet of Things (AIoT), such as wake word detection and speech commands recognition , face detection and recognition, smart home, smart appliance, smart control panel, smart speaker etc.
@@ -56112,9 +56112,9 @@ esp32 module
 47
 39
 Espressif
-ESP32-WROVER-E_Thermal_Vias
+ESP32-WROVER-E_ThermalVias
 ESP32-WROVER-E: https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf
-esp32 module
+esp32 module thermal vias
 0
 59
 39
@@ -84042,6 +84042,13 @@ rotary encoder
 5
 4
 SamacSys_Parts
+140502415000
+140-502-415-000-3
+Connector
+0
+2
+2
+SamacSys_Parts
 1043
 1043-3
 Undefined or Miscellaneous
@@ -84182,6 +84189,13 @@ Crystal or Oscillator
 4
 4
 SamacSys_Parts
+FUSC4632X155N
+0ZCG0200AF2B
+Fuse
+0
+2
+2
+SamacSys_Parts
 JS1300
 JS1300
 Switch
@@ -84202,6 +84216,13 @@ Connector
 0
 13
 13
+SamacSys_Parts
+MP2615GQZ
+MP2615GQ-Z-2
+Integrated Circuit
+0
+16
+16
 SamacSys_Parts
 NE555DR
 D (R-PDSO-G8)
@@ -84286,6 +84307,13 @@ Resistor
 0
 2
 2
+SamacSys_Parts
+SHDR3W65P0X200_1X3_780X580X710P
+292132-3
+Connector
+0
+3
+3
 SamacSys_Parts
 SIM808
 SIM808
@@ -93454,8 +93482,8 @@ TPS63020
 
 
 0
-0
-0
+23
+14
 Z_mycustom_panelization
 mouse bites 2.5mm wide     6mm long    0.6mm holes     0.3mm apart streight edges
 
