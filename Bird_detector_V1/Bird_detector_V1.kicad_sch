@@ -2097,6 +2097,9 @@
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/015853dc-0146-4d67-b96d-2d0e07d728e1/55422314-af74-41e2-935d-83345754a778"
       (reference "U12") (unit 1) (value "TPS63020DSJR") (footprint "Z_mycustom_footprint_lib:TPS63020")
     )
+    (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/2fbd29bc-bd59-45aa-899b-e347bd896902"
+      (reference "U?") (unit 1) (value "CN3791") (footprint "Package_SO:SSOP-10_3.9x4.9mm_P1.00mm")
+    )
     (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/30e6ba2c-e9a6-404a-a680-4aafa409d396"
       (reference "Y1") (unit 1) (value "SiT1602BI-13-33E-12.000000G") (footprint "Crystal:Crystal_SMD_2520-4Pin_2.5x2.0mm")
     )

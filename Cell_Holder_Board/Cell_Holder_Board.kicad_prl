@@ -60,11 +60,11 @@
       35,
       36
     ],
-    "visible_layers": "ffdffdf_ffffffff",
-    "zone_display_mode": 1
+    "visible_layers": "fffffff_ffffffff",
+    "zone_display_mode": 0
   },
   "meta": {
-    "filename": "Bird_detector_V1.kicad_prl",
+    "filename": "Cell_Holder_Board.kicad_prl",
     "version": 3
   },
   "project": {
