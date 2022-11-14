@@ -45,7 +45,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.508
+          "min_clearance": 0.5
         }
       },
       "diff_pair_dimensions": [
@@ -361,7 +361,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Cell_Holder_Board.kicad_pro",
+    "filename": "Cell_Holder_Board_V2.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -440,7 +440,7 @@
   },
   "sheets": [
     [
-      "660dee41-e5c2-41b9-a333-18fa3549c5ae",
+      "4ffaa8d4-91f5-4a72-982b-e4742cd5febc",
       ""
     ]
   ],

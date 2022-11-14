@@ -1,8 +1,8 @@
 {
   "board": {
-    "active_layer": 0,
+    "active_layer": 31,
     "active_layer_preset": "",
-    "auto_track_width": true,
+    "auto_track_width": false,
     "hidden_nets": [],
     "high_contrast_mode": 0,
     "net_color_mode": 1,
@@ -60,11 +60,11 @@
       35,
       36
     ],
-    "visible_layers": "ffcf30f_ffffffff",
-    "zone_display_mode": 0
+    "visible_layers": "fffffff_ffffffff",
+    "zone_display_mode": 1
   },
   "meta": {
-    "filename": "Bird_detector_V1.kicad_prl",
+    "filename": "Cell_Holder_Board_V2.kicad_prl",
     "version": 3
   },
   "project": {

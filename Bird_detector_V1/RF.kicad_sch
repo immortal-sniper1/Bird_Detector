@@ -4952,7 +4952,7 @@
     (uuid 85a2a902-54f8-436e-95cd-4c2e16de81d6)
     (property "Reference" "J3" (id 0) (at 383.54 194.945 0))
     (property "Value" "USB_A" (id 1) (at 383.54 197.485 0))
-    (property "Footprint" "Connector_USB:USB_A_Molex_105057_Vertical" (id 2) (at 379.73 209.55 0)
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" (id 2) (at 379.73 209.55 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" " ~" (id 3) (at 379.73 209.55 0)
