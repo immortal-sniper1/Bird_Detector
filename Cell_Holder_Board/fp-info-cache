@@ -1,64 +1,85 @@
-14929162902095
-TerminalBlock
-TerminalBlock_Altech_AK300-2_P5.00mm
-Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
-Altech AK300 terminal block pitch 5.0mm
+19905550437091
+NetTie
+NetTie-2_SMD_Pad0.5mm
+Net tie, 2 pin, 0.5mm square SMD pads
+net tie
 0
 2
 2
-TerminalBlock
-TerminalBlock_Altech_AK300-3_P5.00mm
-Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
-Altech AK300 terminal block pitch 5.0mm
+NetTie
+NetTie-2_SMD_Pad2.0mm
+Net tie, 2 pin, 2.0mm square SMD pads
+net tie
+0
+2
+2
+NetTie
+NetTie-2_THT_Pad0.3mm
+Net tie, 2 pin, 0.3mm round THT pads
+net tie
+0
+2
+2
+NetTie
+NetTie-2_THT_Pad1.0mm
+Net tie, 2 pin, 1.0mm round THT pads
+net tie
+0
+2
+2
+NetTie
+NetTie-3_SMD_Pad0.5mm
+Net tie, 3 pin, 0.5mm square SMD pads
+net tie
 0
 3
 3
-TerminalBlock
-TerminalBlock_Altech_AK300-4_P5.00mm
-Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
-Altech AK300 terminal block pitch 5.0mm
-0
-4
-4
-TerminalBlock
-TerminalBlock_Wuerth_691311400102_P7.62mm
-https://katalog.we-online.de/em/datasheet/6913114001xx.pdf
-Wuerth WR-TBL Series 3114 terminal block pitch 7.62mm
-0
-2
-2
-TerminalBlock
-TerminalBlock_bornier-2_P5.08mm
-simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2
-terminal block bornier2
-0
-2
-2
-TerminalBlock
-TerminalBlock_bornier-3_P5.08mm
-simple 3-pin terminal block, pitch 5.08mm, revamped version of bornier3
-terminal block bornier3
+NetTie
+NetTie-3_SMD_Pad2.0mm
+Net tie, 3 pin, 2.0mm square SMD pads
+net tie
 0
 3
 3
-TerminalBlock
-TerminalBlock_bornier-4_P5.08mm
-simple 4-pin terminal block, pitch 5.08mm, revamped version of bornier4
-terminal block bornier4
+NetTie
+NetTie-3_THT_Pad0.3mm
+Net tie, 3 pin, 0.3mm round THT pads
+net tie
+0
+3
+3
+NetTie
+NetTie-3_THT_Pad1.0mm
+Net tie, 3 pin, 1.0mm round THT pads
+net tie
+0
+3
+3
+NetTie
+NetTie-4_SMD_Pad0.5mm
+Net tie, 4 pin, 0.5mm square SMD pads
+net tie
 0
 4
 4
-TerminalBlock
-TerminalBlock_bornier-5_P5.08mm
-simple 5-pin terminal block, pitch 5.08mm, revamped version of bornier5
-terminal block bornier5
+NetTie
+NetTie-4_SMD_Pad2.0mm
+Net tie, 4 pin, 2.0mm square SMD pads
+net tie
 0
-5
-5
-TerminalBlock
-TerminalBlock_bornier-6_P5.08mm
-simple 6pin terminal block, pitch 5.08mm, revamped version of bornier6
-terminal block bornier6
+4
+4
+NetTie
+NetTie-4_THT_Pad0.3mm
+Net tie, 4 pin, 0.3mm round THT pads
+net tie
 0
-6
-6
+4
+4
+NetTie
+NetTie-4_THT_Pad1.0mm
+Net tie, 4 pin, 1.0mm round THT pads
+net tie
+0
+4
+4

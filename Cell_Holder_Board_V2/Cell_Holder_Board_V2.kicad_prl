@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 31,
+    "active_layer": 0,
     "active_layer_preset": "",
     "auto_track_width": false,
     "hidden_nets": [],
@@ -36,6 +36,7 @@
       8,
       9,
       10,
+      11,
       13,
       14,
       15,
@@ -60,8 +61,8 @@
       35,
       36
     ],
-    "visible_layers": "fffffff_ffffffff",
-    "zone_display_mode": 1
+    "visible_layers": "ffcffff_ffffffff",
+    "zone_display_mode": 0
   },
   "meta": {
     "filename": "Cell_Holder_Board_V2.kicad_prl",

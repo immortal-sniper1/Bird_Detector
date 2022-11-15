@@ -455,6 +455,12 @@
     (uuid efe1f6ed-292d-45da-8017-32c0c9275ee9)
   )
 
+  (text "bottom heater: 0.5mm 5000mm ==> 4.9 ohm  3A max delta 60C  \ntop heater 0.13mm 1340mm ==> 5.4 ohm 1A max delta 60C\nBoth are in paralel so 2.57 ohm ESR"
+    (at 187.96 25.4 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 68e8f3a9-e1a8-44b8-8293-a3dda2da0940)
+  )
+
   (label "Heater" (at 156.21 31.75 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 02209d0b-7b2e-4915-be50-da9dd4c57e3f)
