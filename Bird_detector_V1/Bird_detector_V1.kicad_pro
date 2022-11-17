@@ -44,8 +44,8 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "45_degree_only": false,
-          "min_clearance": 0.0
+          "45_degree_only": true,
+          "min_clearance": 0.19999999999999998
         }
       },
       "diff_pair_dimensions": [
@@ -465,6 +465,10 @@
     [
       "015853dc-0146-4d67-b96d-2d0e07d728e1",
       "SMPSs"
+    ],
+    [
+      "d3ba6849-323c-47dd-8776-a0c87bca3b0c",
+      "test"
     ]
   ],
   "text_variables": {}
