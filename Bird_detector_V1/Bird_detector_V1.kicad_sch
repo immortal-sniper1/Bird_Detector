@@ -1697,6 +1697,9 @@
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/19f73734-4ad9-4875-a0bf-3d81288cb5e9"
       (reference "#PWR0235") (unit 1) (value "+3.3VA") (footprint "")
     )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/21487257-1516-45b0-ab5f-67ffb75924c7"
+      (reference "#PWR0236") (unit 1) (value "GND") (footprint "")
+    )
     (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/1d1eb42c-9c08-4a47-8d2a-899420712ada"
       (reference "C1") (unit 1) (value "1u") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
     )
@@ -1936,6 +1939,12 @@
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/a1ce23d2-9095-46d6-bcac-54c263a8f408"
       (reference "C80") (unit 1) (value "100n") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
+    )
+    (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/dd2f05cb-4381-4915-8ebf-6b1f0d7a2f40"
+      (reference "C81") (unit 1) (value "100n") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
+    )
+    (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/cef39fa9-dd58-4fd3-bb19-f59d82ada1a8"
+      (reference "C82") (unit 1) (value "C_Polarized_Small") (footprint "")
     )
     (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/3d37e2d0-6245-40b4-bc07-8c3bdf93453e"
       (reference "D1") (unit 1) (value "LED_Small") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
@@ -2557,6 +2566,12 @@
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/f4d702c2-9f89-4545-9775-30cccc19c8c3"
       (reference "R106") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/de3d7043-ce67-4739-b134-ead78a503614"
+      (reference "R107") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/6669d9c3-83e4-4e4d-88d3-1e3258d78363"
+      (reference "R108") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/e1f04175-2c66-4c16-a67e-800aeb5aa110"
       (reference "SW1") (unit 1) (value "SW_SPST") (footprint "SamacSys_Parts:PTS526SK15SMTR2LFS")
