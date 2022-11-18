@@ -4,6 +4,11 @@
 
   (paper "A3")
 
+  (title_block
+    (title "Bird Detection and Recognition System")
+    (rev "V0.1")
+  )
+
   (lib_symbols
     (symbol "Mechanical:Fiducial" (in_bom yes) (on_board yes)
       (property "Reference" "FID" (id 0) (at 0 5.08 0)
@@ -1649,23 +1654,17 @@
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/e3d4ad28-b8b3-4f88-ae7a-ac55379d51e1"
       (reference "#PWR0219") (unit 1) (value "GND") (footprint "")
     )
-    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/7294281e-976a-4aeb-9034-756fb3c8fcb8"
-      (reference "#PWR0220") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/9ad98729-5d44-4d9b-bb3b-863273e099b5"
-      (reference "#PWR0221") (unit 1) (value "+3V3") (footprint "")
-    )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/a4b049ce-1f56-488c-9ffa-b2ff362e1177"
       (reference "#PWR0222") (unit 1) (value "GND") (footprint "")
     )
-    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/448360a9-d77e-40fa-8c06-e6112ed173b7"
-      (reference "#PWR0223") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/8836b1d8-ae97-4ec7-9ac1-0443d2ace691"
-      (reference "#PWR0225") (unit 1) (value "+3V3") (footprint "")
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/41f92477-07aa-4f31-92b2-b9a504643ddc"
+      (reference "#PWR0224") (unit 1) (value "GND") (footprint "")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/2402a4e2-c33c-4741-83b5-542a448dda7c"
       (reference "#PWR0226") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/49cd66d3-b152-4450-89dc-fc6dc26c224a"
+      (reference "#PWR0227") (unit 1) (value "+3V3") (footprint "")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/2a44c078-f688-4ebd-aa93-473aeaf965d2"
       (reference "#PWR0228") (unit 1) (value "GND") (footprint "")
@@ -2086,6 +2085,9 @@
     )
     (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3/aadf3ec5-a699-497a-9712-e9d26b2e9fbe"
       (reference "J17") (unit 1) (value "PCB CAP") (footprint "Z_mycustom_footprint_lib:PCB cap start")
+    )
+    (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/558a3f68-0ce3-41c3-bab1-ffdc35d1492e"
+      (reference "J18") (unit 1) (value "Conn_02x02_Odd_Even") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/1f6e798f-90d9-4c46-b40c-241219b7f92f"
       (reference "J19") (unit 1) (value "Conn_02x02_Odd_Even") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD")

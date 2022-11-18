@@ -4,6 +4,12 @@
 
   (paper "A3")
 
+  (title_block
+    (title "Bird Detection and Recognition System")
+    (date "2022-11-18")
+    (rev "V0.1")
+  )
+
   (lib_symbols
     (symbol "Connector:Micro_SD_Card_Det" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
       (property "Reference" "J" (id 0) (at -16.51 17.78 0)

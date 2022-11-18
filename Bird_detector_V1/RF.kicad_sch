@@ -4,6 +4,11 @@
 
   (paper "A3")
 
+  (title_block
+    (title "Bird Detection and Recognition System")
+    (rev "V0.1")
+  )
+
   (lib_symbols
     (symbol "Connector:Conn_Coaxial" (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
       (property "Reference" "J" (id 0) (at 0.254 3.048 0)
