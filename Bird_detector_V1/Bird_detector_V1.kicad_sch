@@ -6,7 +6,11 @@
 
   (title_block
     (title "Bird Detection and Recognition System")
+    (date "2022-11-23")
     (rev "V0.1")
+    (comment 1 "Designed by: Kecs Robert Alfred")
+    (comment 2 "Verified by: Kecs Robert Alfred")
+    (comment 3 "Layout by: Kecs Robert Alfred")
   )
 
   (lib_symbols
@@ -2691,13 +2695,13 @@
       (reference "U19") (unit 1) (value "MMA8452") (footprint "Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/6d4d6860-a0b2-439a-bc0f-c6e113cb5c03"
-      (reference "U20") (unit 1) (value "BME280") (footprint "Z_mycustom_footprint_lib:Bosch_LGA-8_3x3mm_P0.8mm_ClockwisePinNumbering_Hand_Soldering_long_pads")
+      (reference "U20") (unit 1) (value "BME280") (footprint "Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering")
     )
     (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/2b0a47fa-fecd-44af-9ca5-52c9c24ec572"
       (reference "U21") (unit 1) (value "eSIM") (footprint "Z_mycustom_footprint_lib:eSIM")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/e5f6e4c0-e2ca-4ac3-9f8b-a6a27f7c2467"
-      (reference "U22") (unit 1) (value "BME280") (footprint "Z_mycustom_footprint_lib:Bosch_LGA-8_3x3mm_P0.8mm_ClockwisePinNumbering_Hand_Soldering_long_pads")
+      (reference "U22") (unit 1) (value "BME280") (footprint "Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering")
     )
     (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/30e6ba2c-e9a6-404a-a680-4aafa409d396"
       (reference "Y1") (unit 1) (value "SiT1602BI-13-33E-12.000000G") (footprint "Crystal:Crystal_SMD_2520-4Pin_2.5x2.0mm")

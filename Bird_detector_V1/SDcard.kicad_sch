@@ -6,8 +6,11 @@
 
   (title_block
     (title "Bird Detection and Recognition System")
-    (date "2022-11-18")
+    (date "2022-11-23")
     (rev "V0.1")
+    (comment 1 "Designed by: Kecs Robert Alfred")
+    (comment 2 "Verified by: Kecs Robert Alfred")
+    (comment 3 "Layout by: Kecs Robert Alfred")
   )
 
   (lib_symbols

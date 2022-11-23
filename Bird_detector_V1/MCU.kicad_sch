@@ -6,7 +6,11 @@
 
   (title_block
     (title "Bird Detection and Recognition System")
+    (date "2022-11-23")
     (rev "V0.1")
+    (comment 1 "Designed by: Kecs Robert Alfred")
+    (comment 2 "Verified by: Kecs Robert Alfred")
+    (comment 3 "Layout by: Kecs Robert Alfred")
   )
 
   (lib_symbols
@@ -3090,6 +3094,10 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 3ef6a006-f241-46f5-bdbd-c6f87c1c38f9)
   )
+  (label "ADRESS_BME280" (at 213.36 248.92 0)
+    (effects (font (size 0.5 0.5)) (justify left bottom))
+    (uuid 3f55f9cd-cdf1-473f-ae18-3e40c05892b6)
+  )
   (label "~{DTR}" (at 325.12 54.61 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 427f6778-cf28-4039-b7b0-afefa20c80b3)
@@ -3133,6 +3141,10 @@
   (label "~{RI}" (at 325.12 59.69 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 5ba76370-897e-45c8-9595-8971d25a4e04)
+  )
+  (label "COMMON_NODE" (at 151.13 196.85 180)
+    (effects (font (size 0.5 0.5)) (justify right bottom))
+    (uuid 5cc55cf6-d3f5-4d21-a2d3-c4f594c47317)
   )
   (label "GPIO_38" (at 50.8 218.44 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
