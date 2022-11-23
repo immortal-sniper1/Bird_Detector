@@ -2969,7 +2969,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 75ad7845-f3b1-492d-8ab1-1c560202b4f5)
   )
-  (text "SD CARD data\nSPI/2/4bit" (at 69.85 191.77 0)
+  (text "SD CARD data\nSPI/1bit/4bit" (at 69.85 191.77 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 78ba2ab5-5f8e-459a-a0c7-ab29e21effa4)
   )
