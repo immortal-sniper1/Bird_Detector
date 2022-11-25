@@ -1194,6 +1194,9 @@
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/c8e02624-6c9d-409d-845a-b57da8f4fe31"
       (reference "#PWR033") (unit 1) (value "GND") (footprint "")
     )
+    (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/015853dc-0146-4d67-b96d-2d0e07d728e1/687d0d1f-c0aa-4c93-a6b0-0082dff3ca11"
+      (reference "#PWR034") (unit 1) (value "GND") (footprint "")
+    )
     (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/4fd5528f-7723-4636-92d7-67976f3406b9"
       (reference "#PWR046") (unit 1) (value "GND") (footprint "")
     )
@@ -1701,8 +1704,17 @@
     (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3/80060a0d-7eef-41c2-9c06-d9d1aa741ab4"
       (reference "#PWR0222") (unit 1) (value "+3V3") (footprint "")
     )
+    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/62d6638d-52dc-476d-8786-2ab6089b288c"
+      (reference "#PWR0223") (unit 1) (value "GND") (footprint "")
+    )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/41f92477-07aa-4f31-92b2-b9a504643ddc"
       (reference "#PWR0224") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/55fa09bb-2542-4a31-b119-1878621414e0"
+      (reference "#PWR0225") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3/eb6c0503-c49a-44a6-b6ec-ce270acf7200"
+      (reference "#PWR0226") (unit 1) (value "GND") (footprint "")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/49cd66d3-b152-4450-89dc-fc6dc26c224a"
       (reference "#PWR0227") (unit 1) (value "+3V3") (footprint "")
@@ -1965,6 +1977,15 @@
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/cef39fa9-dd58-4fd3-bb19-f59d82ada1a8"
       (reference "C82") (unit 1) (value "supercap") (footprint "Z_mycustom_footprint_lib:SCMT32D755SRBB0")
     )
+    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/f50e301b-4da3-4e6f-b12f-c3217ee17afd"
+      (reference "C83") (unit 1) (value "6p8") (footprint "Capacitor_SMD:C_0603_1608Metric")
+    )
+    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/fac53d1c-c91e-4764-81b9-6b2448e85bbe"
+      (reference "C84") (unit 1) (value "6p8") (footprint "Capacitor_SMD:C_0603_1608Metric")
+    )
+    (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3/a3d575c1-d527-40df-8b92-a31271172d39"
+      (reference "C85") (unit 1) (value "6p8") (footprint "Capacitor_SMD:C_0603_1608Metric")
+    )
     (path "/eeacf02d-4c41-48a3-ad8c-71b7594c47c2/3d37e2d0-6245-40b4-bc07-8c3bdf93453e"
       (reference "D1") (unit 1) (value "LED_Small") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
     )
@@ -2121,8 +2142,8 @@
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/76c9b892-9c4d-4bde-b7e1-f8cb0715cc4a"
       (reference "J11") (unit 1) (value "Solar input") (footprint "TerminalBlock:TerminalBlock_Altech_AK300-3_P5.00mm")
     )
-    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/f6e4eb3e-bc7c-4500-9c15-a61e279284a9"
-      (reference "J12") (unit 1) (value "PCB CAP") (footprint "Z_mycustom_footprint_lib:PCB cap start")
+    (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/015853dc-0146-4d67-b96d-2d0e07d728e1/83806f53-e0af-4a19-b114-08a79c962d57"
+      (reference "J12") (unit 1) (value "enable") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/7c8a084f-3275-4e7f-a5d9-be42c287ab56"
       (reference "J13") (unit 1) (value "USB_A") (footprint "SamacSys_Parts:USB1040GFLB")
@@ -2132,12 +2153,6 @@
     )
     (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3/ae9b804e-2b34-4314-952b-e5071891c397"
       (reference "J15") (unit 1) (value "2x10") (footprint "SamacSys_Parts:TSM-110-ZZ-YYY-DH")
-    )
-    (path "/becfa44c-e22d-4533-8692-252bab5a0fb5/ee91e2d8-62b5-48d3-b905-020267a08fb2"
-      (reference "J16") (unit 1) (value "PCB CAP") (footprint "Z_mycustom_footprint_lib:PCB cap start")
-    )
-    (path "/53d9ee9c-cbfc-4d23-958e-21c179b699b3/aadf3ec5-a699-497a-9712-e9d26b2e9fbe"
-      (reference "J17") (unit 1) (value "PCB CAP") (footprint "Z_mycustom_footprint_lib:PCB cap start")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/558a3f68-0ce3-41c3-bab1-ffdc35d1492e"
       (reference "J18") (unit 1) (value "Conn_02x02_Odd_Even") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD")
@@ -2539,7 +2554,7 @@
       (reference "R88") (unit 1) (value "180k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/015853dc-0146-4d67-b96d-2d0e07d728e1/28634452-a765-4cc3-a013-bc29e10116a6"
-      (reference "R89") (unit 1) (value "1.32Meg") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+      (reference "R89") (unit 1) (value "1.33Meg") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/015853dc-0146-4d67-b96d-2d0e07d728e1/12aed7af-3b4e-4440-8867-6e8b54b76dbf"
       (reference "R90") (unit 1) (value "DNP") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
