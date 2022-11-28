@@ -2035,7 +2035,7 @@
       (reference "D16") (unit 1) (value "LED_Small") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/acad7e1c-d788-415b-bd29-de456da05d03"
-      (reference "D17") (unit 1) (value "D5V0P4UR6SO-7") (footprint "SamacSys_Parts:SOT95P285X140-6N")
+      (reference "D17") (unit 1) (value "D5V0P4UR6SO-7") (footprint "SOT95P285X140-6N")
     )
     (path "/39b31853-1309-4eac-91f5-4cfb610c74fa/999e0ee8-61cf-4662-9d48-c3353a27b4b4"
       (reference "D18") (unit 1) (value "SX33L_R1_00001") (footprint "Diode_SMD:D_SMA_Handsoldering")
@@ -2155,7 +2155,7 @@
       (reference "J15") (unit 1) (value "2x10") (footprint "SamacSys_Parts:TSM-110-ZZ-YYY-DH")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/558a3f68-0ce3-41c3-bab1-ffdc35d1492e"
-      (reference "J18") (unit 1) (value "Conn_02x02_Odd_Even") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD")
+      (reference "J18") (unit 1) (value "PINS") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD")
     )
     (path "/94b5dc3a-5793-40ef-bc39-7863e8733196/d3ba6849-323c-47dd-8776-a0c87bca3b0c/1f6e798f-90d9-4c46-b40c-241219b7f92f"
       (reference "J19") (unit 1) (value "Conn_02x02_Odd_Even") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD")
