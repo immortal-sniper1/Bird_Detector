@@ -32,13 +32,28 @@
 #include "sdmmc_cmd.h"
 #include "driver/sdmmc_host.h"
 
+//I2C libs
+//#include <stdio.h>
+#include "esp_log.h"
+#include "driver/i2c.h"
+#include "sdkconfig.h"  // needed for self test for some reason
+
+
+#define debug_lvl 1
+
+#if debug_lvl
+#define Error_Logger(...) printf(0 __VA_OPT__(,) __VA_ARGS__)
+#endif
+
 //-------------------------------------CONSTANTS---------------------------------------------
+
+#define MOUNT_POINT "/sdcard"
 
 // uSD card pins
 const int8_t SD_DATAO_PIN = 6;
-const int8_t SD_DATAO_PIN = 5;
-const int8_t SD_DATAO_PIN = 17;
-const int8_t SD_DATAO_PIN = 16;
+const int8_t SD_DATA1_PIN = 5;
+const int8_t SD_DATA2_PIN = 17;
+const int8_t SD_DATA3_PIN = 16;
 const int8_t SD_CLK_PIN = 7;
 const int8_t SD_DETECT_PIN = 4;
 const int8_t SD_CMD_PIN = 15;
@@ -89,40 +104,133 @@ const int8_t D_pos = 14;
 const int8_t D_neg = 13;
 
 //-------------------------------------------------VARIABLES------------------------------------------
+//global error variables
+esp_err_t Error_var;
 
+// wifi variables
 char found_nets[20][20];
+
+//SD variables
 int8_t SD_bit_mode = 4;
+static const char *TAG = "example";
+uint32_t SD_Speed = 20 * 1000; // in KHz 40MHz is max and only int fractions can be used 20 10 8 5 1
+//bool ddr_mode = FALSE; // if enable it requires good signal integrity , maybe later
 
 //-------------------------------------------------FUNCTIONS------------------------------------------
-void
-WIFI_SCANNER (char *foundd_nets[][])
-{
-  sleep (1);
-}
+/*
+ void
+ WIFI_SCANNER (char *foundd_nets[][])
+ {
+ sleep (1);
+ }
+ */
+
+/*
+ void
+ SD_MMC_CONFIG_FUNCTION_v1 (void)
+ {
+
+ sdmmc_host_init_slot (SDMMC_HOST_SLOT_1, d);
+
+ sdmmc_host_deinit ();
+
+ sdmmc_card_t *MY_card;
+ const char mount_point[] = MOUNT_POINT;
+ ESP_LOGI(TAG, "Initializing SD card");
+
+ // Use settings defined above to initialize SD card and mount FAT filesystem.
+ // Note: esp_vfs_fat_sdmmc/sdspi_mount is all-in-one convenience functions.
+ // Please check its source code and implement error recovery when developing
+ // production applications.
+
+ ESP_LOGI(TAG, "Using SDMMC peripheral");
+
+ // By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
+ // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 40MHz for SDMMC)
+ // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
+ sdmmc_host_t MY_SD = SDMMC_HOST_DEFAULT();
+ MY_SD.max_freq_khz = SDMMC_FREQ_HIGHSPEED;
+ sdmmc_slot_config_t SD_slot = SDMMC_SLOT_CONFIG_DEFAULT();
+ SD_slot.width = SD_bit_mode;   // can also be 1
+ SD_slot.gpio_cd = SD_DETECT_PIN;
+
+ SD_slot.clk = SD_CLK_PIN;
+ SD_slot.cmd = SD_CMD_PIN;
+ SD_slot.d0 = SD_DATAO_PIN;
+ SD_slot.d1 = SD_DATA1_PIN;
+ SD_slot.d2 = SD_DATA2_PIN;
+ SD_slot.d3 = SD_DATA3_PIN;
+
+ ESP_LOGI(TAG, "Mounting filesystem");
+ ret = esp_vfs_fat_sdmmc_mount (mount_point, &host, &slot_config,
+ &mount_config, &MY_card);
+
+ if (ret != ESP_OK)
+ {
+ if (ret == ESP_FAIL)
+ {
+ ESP_LOGE(
+ TAG,
+ "Failed to mount filesystem. " "If you want the card to be formatted, set the EXAMPLE_FORMAT_IF_MOUNT_FAILED menuconfig option.");
+ }
+ else
+ {
+ ESP_LOGE(
+ TAG,
+ "Failed to initialize the card (%s). " "Make sure SD card lines have pull-up resistors in place.",
+ esp_err_to_name (ret));
+ }
+ return;
+ }
+ ESP_LOGI(TAG, "Filesystem mounted");
+ // Card has been initialized, print its properties
+ sdmmc_card_print_info (stdout, MY_card);
+ }
+ */
 
 void
-SD_MMC_CONFIG_FUNCTION (void)
+SD_MMC_CONFIG_FUNCTION_v2 (void)
 {
+  sdmmc_card_t *MY_CARD;
+  sdmmc_slot_config_t MY_SD_SLOT;
+  MY_SD_SLOT.gpio_cd = SD_DETECT_PIN;
+  MY_SD_SLOT.gpio_wp = SDMMC_SLOT_NO_WP;
+  MY_SD_SLOT.clk = SD_CLK_PIN;
+  MY_SD_SLOT.cmd = SD_CMD_PIN;
+  MY_SD_SLOT.d0 = SD_DATAO_PIN;
+  MY_SD_SLOT.d1 = SD_DATA1_PIN;
+  MY_SD_SLOT.d2 = SD_DATA2_PIN;
+  MY_SD_SLOT.d3 = SD_DATA3_PIN;
 
-  sdmmc_host_init_slot (SDMMC_HOST_SLOT_1);
+  Error_var = sdmmc_host_init_slot (1, MY_SD_SLOT);
+  Error_Logger(Error_var);
+  //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
+  //For Default Speed cards, 20MHz can be used.
+  Error_var = sdmmc_host_set_card_clk (MY_SD_SLOT, SD_Speed);
+  Error_Logger(Error_var);
+  Error_var = sdmmc_host_set_bus_width (MY_SD_SLOT, SD_bit_mode);
+  Error_Logger(Error_var);
+  //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
+  Error_var = sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, FALSE);
+  Error_Logger(Error_var);
+  Error_var = sdmmc_card_print_info (stdout, MY_CARD);
+  Error_Logger(Error_var);
+  Error_var = sdmmc_host_init ();
+  Error_Logger(Error_var);
 
-  sdmmc_host_deinit ();
 
-  // By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
-  // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 40MHz for SDMMC)
-  // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
-  sdmmc_host_t mySD = SDMMC_HOST_DEFAULT();
-  mySD.max_freq_khz = SDMMC_FREQ_HIGHSPEED;
-  sdmmc_slot_config_t SD_slot = SDMMC_SLOT_CONFIG_DEFAULT();
-  SD_slot.width = SD_bit_mode;   // can also be 1
-  SD_slot.gpio_cd = SD_DETECT_PIN;
+  /*
+  sdmmc_host_init_slot (1, MY_SD_SLOT);
+  //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
+  //For Default Speed cards, 20MHz can be used.
+  sdmmc_host_set_card_clk (MY_SD_SLOT, SD_Speed);
+  sdmmc_host_set_bus_width (MY_SD_SLOT, SD_bit_mode);
+  //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
+  sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, FALSE);
+  sdmmc_card_print_info (stdout, MY_CARD);
+  sdmmc_host_init ();
+  */
 
-  SD_slot.clk = CONFIG_EXAMPLE_PIN_CLK;
-  SD_slot.cmd = CONFIG_EXAMPLE_PIN_CMD;
-  SD_slot.d0 = CONFIG_EXAMPLE_PIN_D0;
-  SD_slot.d1 = CONFIG_EXAMPLE_PIN_D1;
-  SD_slot.d2 = CONFIG_EXAMPLE_PIN_D2;
-  SD_slot.d3 = CONFIG_EXAMPLE_PIN_D3;
 }
 
 //-----------------------------------------------MAIN LOOPS-------------------------------------------
