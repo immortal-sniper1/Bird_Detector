@@ -1,0 +1,37 @@
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\WpfApplication1.exe
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\bin\Debug\WpfApplication1.pdb
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\MainWindow.baml
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\MainWindow.g.cs
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\App.g.cs
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\WpfApplication1_MarkupCompile.cache
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\WpfApplication1.g.resources
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\WpfApplication1.Properties.Resources.resources
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\WpfApplication1.exe
+C:\Users\a0273365\AppData\Local\Temporary Projects\WpfApplication1\obj\x86\Debug\WpfApplication1.pdb
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1.exe
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1.pdb
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\bin\Debug\WpfApplication1.exe
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\bin\Debug\WpfApplication1.pdb
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\MainWindow.baml
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\MainWindow.g.cs
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\App.g.cs
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1_MarkupCompile.cache
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1.g.resources
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1.Properties.Resources.resources
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\bin\Debug\WpfApplication1.exe.manifest
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\bin\Debug\WpfApplication1.application
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1.exe.manifest
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1.application
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1_MarkupCompile.lref
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\Window1.baml
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\Window1.g.cs
+C:\Users\a0273365\documents\visual studio 2010\Projects\WpfApplication1\WpfApplication1\obj\x86\Debug\WpfApplication1_Content.g.cs
+C:\Users\a0273365\Documents\Visual Studio 2010\Projects\TCA7313_GUI\WpfApplication1\obj\x86\Debug\WpfApplication1.exe
+C:\Users\a0273365\Documents\Visual Studio 2010\Projects\TCA7313_GUI\WpfApplication1\obj\x86\Debug\WpfApplication1.pdb
