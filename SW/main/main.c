@@ -2,6 +2,33 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+// MQTT5 libs
+//#include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <string.h>
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "protocol_examples_common.h"
+#include "esp_log.h"
+#include "mqtt_client.h"
+
+// WIFI libs
+#include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/event_groups.h"
+#include "esp_wifi.h"
+//#include "esp_log.h"
+//#include "esp_event.h"
+//#include "nvs_flash.h"
+
+
+
+
+
+
 
 // uSD card pins
 const int8_t DATAO_PIN = 6;
@@ -12,7 +39,6 @@ const int8_t SD_CLK = 7;
 const int8_t SD_DETECT = 4;
 const int8_t SD_CMD = 15;
 
-
 // I2C address list
 const int8_t BME280 = 0x76; // or 0x77
 const int8_t BME680 = 0x76; // or 0x77
@@ -22,15 +48,14 @@ const int8_t INA3221 = 0x40;
 const int8_t TCA9545APWR = 0x20;
 const int8_t MMA8452 = 0x??;
 
-
 // I2C GPIO pins
-const int8_t SDA_PIN=36;
-const int8_t SCL_PIN=35;
+const int8_t SDA_PIN = 36;
+const int8_t SCL_PIN = 35;
 
 // I2S GPIO pins
-const int8_t SCK_PIN=48;
-const int8_t WS_PIN=47;
-const int8_t SD_PIN=21;
+const int8_t SCK_PIN = 48;
+const int8_t WS_PIN = 47;
+const int8_t SD_PIN = 21;
 const int8_t I2S_RESET = 38;
 
 // SIM808 UART GPIO pins (GSM+ GNSS+BT)
@@ -45,12 +70,12 @@ const int8_t heater = 40;
 const int8_t charge_enable = 46;
 const int8_t SIM808_ENABLE = 1;
 
-
-
-void app_main(void)
+void
+app_main (void)
 {
-    while (true) {
-        printf("Hello from app_main!\n");
-        sleep(1);
+  while (true)
+    {
+      printf ("Hello from app_main!\n");
+      sleep (1);
     }
 }
