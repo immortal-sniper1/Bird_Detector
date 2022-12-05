@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "driver/gpio.h"
 
 // MQTT5 libs
 //#include <stdio.h>
@@ -38,10 +39,14 @@
 #include "driver/i2c.h"
 #include "sdkconfig.h"  // needed for self test for some reason
 
+//BME280 sensor lib
+#include "lib/BME280_driver-master/bme280.h"
+
 #define debug_lvl 1
 
 #if debug_lvl
 #define Error_Logger(...) printf(0 __VA_OPT__(,) __VA_ARGS__)
+#else Error_Logger(...) //tf(0 __VA_OPT__(,) __VA_ARGS__)
 #endif
 
 //----------------------------------------------------------------------------------------------------
@@ -51,13 +56,13 @@
 #define MOUNT_POINT "/sdcard"
 
 // uSD card pins
-const int8_t SD_DATAO_PIN = 6;
-const int8_t SD_DATA1_PIN = 5;
-const int8_t SD_DATA2_PIN = 17;
-const int8_t SD_DATA3_PIN = 16;
-const int8_t SD_CLK_PIN = 7;
-const int8_t SD_DETECT_PIN = 4;
-const int8_t SD_CMD_PIN = 15;
+const gpio_num_t SD_DATAO_PIN = GPIO_NUM_6;
+const gpio_num_t SD_DATA1_PIN = GPIO_NUM_5;
+const gpio_num_t SD_DATA2_PIN = GPIO_NUM_17;
+const gpio_num_t SD_DATA3_PIN = GPIO_NUM_16;
+const gpio_num_t SD_CLK_PIN = GPIO_NUM_7;
+const gpio_num_t SD_DETECT_PIN = GPIO_NUM_4;
+const gpio_num_t SD_CMD_PIN = GPIO_NUM_15;
 
 // I2C address list
 const int8_t BME280 = 0x76; // or 0x77              // HUM+TEMP+PRESS     SENSOR
@@ -70,39 +75,39 @@ const int8_t MMA8452 = 0x1C;                        // ACCELEROMETER      SENSOR
 const int8_t MAX11601 = 0x64;                       // ADC
 
 // I2C GPIO pins
-const int8_t SDA_PIN = 36;
-const int8_t SCL_PIN = 35;
+const gpio_num_t SDA_PIN = GPIO_NUM_36;
+const gpio_num_t SCL_PIN = GPIO_NUM_35;
 
 // I2S GPIO pins
-const int8_t SCK_PIN = 48;
-const int8_t WS_PIN = 47;
-const int8_t SD_PIN = 21;
-const int8_t I2S_RESET = 38;
+const gpio_num_t SCK_PIN = GPIO_NUM_48;
+const gpio_num_t WS_PIN = GPIO_NUM_47;
+const gpio_num_t SD_PIN = GPIO_NUM_21;
+const gpio_num_t I2S_RESET = GPIO_NUM_38;
 
 // SIM808 UART GPIO pins (GSM+ GNSS+BT)
-const int8_t SIM808_TX = 11;
-const int8_t SIM808_RX = 12;
-const int8_t SIM808_DTR = 37;
-const int8_t SIM808_RI = 18;
-const int8_t SIM808_DCD = 8;
-const int8_t SIM808_CTS = 14;
-const int8_t SIM808_RTS = 13;
-const int8_t SIM808_RESET = 10;
-const int8_t SIM808_STAT = 9;
+const gpio_num_t SIM808_TX = GPIO_NUM_11;
+const gpio_num_t SIM808_RX = GPIO_NUM_12;
+const gpio_num_t SIM808_DTR = GPIO_NUM_37;
+const gpio_num_t SIM808_RI = GPIO_NUM_18;
+const gpio_num_t SIM808_DCD = GPIO_NUM_8;
+const gpio_num_t SIM808_CTS = GPIO_NUM_14;
+const gpio_num_t SIM808_RTS = GPIO_NUM_13;
+const gpio_num_t SIM808_RESET = GPIO_NUM_10;
+const gpio_num_t SIM808_STAT = GPIO_NUM_9;
 
 // MCP2561-H-SN UART GPIO pins (CAN BUS INTERFACE)
-const int8_t CAN_TX = 42;
-const int8_t CAN_RX = 41;
-const int8_t STBY = 2;
+const gpio_num_t CAN_TX = GPIO_NUM_42;
+const gpio_num_t CAN_RX = GPIO_NUM_41;
+const gpio_num_t STBY = GPIO_NUM_2;
 
 //ENABLE pins
-const int8_t heater = 40;
-const int8_t charge_enable = 46;
-const int8_t SIM808_ENABLE = 1;
+const gpio_num_t heater = GPIO_NUM_40;
+const gpio_num_t charge_enable = GPIO_NUM_46;
+const gpio_num_t SIM808_ENABLE = GPIO_NUM_1;
 
 //USB OTG pin (NO OUTPUT POWER, ONLY INPUT POWER!)
-const int8_t D_pos = 14;
-const int8_t D_neg = 13;
+const gpio_num_t D_pos = GPIO_NUM_14;
+const gpio_num_t D_neg = GPIO_NUM_13;
 
 //----------------------------------------------------------------------------------------------------
 //-------------------------------------------------VARIABLES------------------------------------------
@@ -347,21 +352,74 @@ return Kelvin_to_Celsius (tempetature);
 //------------------------------------------------ADC_FUNCTIONS
 
 //------------------------------------------------BME280_FUNCTIONS
+struct bme280_dev MY_BME280;
+int8_t rslt = BME280_OK;
+uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
+/*
+ In case of the macro "BME280_FLOAT_ENABLE" enabled,
+ The outputs are in double and the units are
+
+ - °C for temperature
+ - % relative humidity
+ - Pascal for pressure
+
+ In case if "BME280_FLOAT_ENABLE" is not enabled, then it is
+
+ - int32_t for temperature with the units 100 * °C
+ - uint32_t for humidity with the units 1024 * % relative humidity
+ - uint32_t for pressure
+ If macro "BME280_64BIT_ENABLE" is enabled, which it is by default, the unit is 100 * Pascal
+ If this macro is disabled, Then the unit is in Pascal
+ */
+MY_BME280.intf_ptr = &dev_addr;
+MY_BME280.intf = BME280_I2C_INTF;
+MY_BME280.read = user_i2c_read;
+MY_BME280.write = user_i2c_write;
+MY_BME280.delay_ms = user_delay_ms;
+
+/*
+ struct bme280_data
+ {
+
+ double pressure;  //< Compensated pressure //
+
+ double temperature; //< Compensated temperature //
+
+ double humidity; // Compensated humidity
+ };
+ */
 
 //------------------------------------------------BME680_FUNCTIONS
-
+//
 //------------------------------------------------CAN_BUS_FUNCTIONS
-
+//
+//------------------------------------------------GPIO_FUNCTIONS
+//
+void Heater( bool *state)
+{
+  gpio_set_level(heater , state);  // state can be 1 or 0
+}
+void Disable_chargeing( bool *state)
+{
+  gpio_set_level(charge_enable , state);
+}
+void GPIO_Default_Config( void)
+{
+  gpio_set_direction( charge_enable, GPIO_MODE_OUTPUT);
+  gpio_set_direction( heater, GPIO_MODE_OUTPUT);
+  gpio_set_pull_mode( charge_enable , GPIO_PULLDOWN_ONLY);
+  gpio_set_pull_mode( heater , GPIO_FLOATING);
+}
 //----------------------------------------------------------------------------------------------------
 //-----------------------------------------------MAIN LOOPS-------------------------------------------
 //----------------------------------------------------------------------------------------------------
-
 void
 app_main (void)
 {
 while (true)
 {
   printf ("Hello from app_main!\n");
+
   sleep (1);
 }
 }
