@@ -38,14 +38,15 @@
 #include "driver/i2c.h"
 #include "sdkconfig.h"  // needed for self test for some reason
 
-
 #define debug_lvl 1
 
 #if debug_lvl
 #define Error_Logger(...) printf(0 __VA_OPT__(,) __VA_ARGS__)
 #endif
 
-//-------------------------------------CONSTANTS---------------------------------------------
+//----------------------------------------------------------------------------------------------------
+//----------------------------------------------CONSTANTS---------------------------------------------
+//----------------------------------------------------------------------------------------------------
 
 #define MOUNT_POINT "/sdcard"
 
@@ -103,7 +104,10 @@ const int8_t SIM808_ENABLE = 1;
 const int8_t D_pos = 14;
 const int8_t D_neg = 13;
 
+//----------------------------------------------------------------------------------------------------
 //-------------------------------------------------VARIABLES------------------------------------------
+//----------------------------------------------------------------------------------------------------
+
 //global error variables
 esp_err_t Error_var;
 
@@ -116,7 +120,10 @@ static const char *TAG = "example";
 uint32_t SD_Speed = 20 * 1000; // in KHz 40MHz is max and only int fractions can be used 20 10 8 5 1
 //bool ddr_mode = FALSE; // if enable it requires good signal integrity , maybe later
 
+//----------------------------------------------------------------------------------------------------
 //-------------------------------------------------FUNCTIONS------------------------------------------
+//----------------------------------------------------------------------------------------------------
+
 /*
  void
  WIFI_SCANNER (char *foundd_nets[][])
@@ -124,7 +131,7 @@ uint32_t SD_Speed = 20 * 1000; // in KHz 40MHz is max and only int fractions can
  sleep (1);
  }
  */
-
+//------------------------------------------------SD_FUNCTIONS
 /*
  void
  SD_MMC_CONFIG_FUNCTION_v1 (void)
@@ -216,31 +223,145 @@ SD_MMC_CONFIG_FUNCTION_v2 (void)
   Error_var = sdmmc_card_print_info (stdout, MY_CARD);
   Error_Logger(Error_var);
   Error_var = sdmmc_host_init ();
-  Error_Logger(Error_var);
+Error_Logger(Error_var);
 
-
-  /*
-  sdmmc_host_init_slot (1, MY_SD_SLOT);
-  //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
-  //For Default Speed cards, 20MHz can be used.
-  sdmmc_host_set_card_clk (MY_SD_SLOT, SD_Speed);
-  sdmmc_host_set_bus_width (MY_SD_SLOT, SD_bit_mode);
-  //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
-  sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, FALSE);
-  sdmmc_card_print_info (stdout, MY_CARD);
-  sdmmc_host_init ();
-  */
+/*
+ sdmmc_host_init_slot (1, MY_SD_SLOT);
+ //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
+ //For Default Speed cards, 20MHz can be used.
+ sdmmc_host_set_card_clk (MY_SD_SLOT, SD_Speed);
+ sdmmc_host_set_bus_width (MY_SD_SLOT, SD_bit_mode);
+ //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
+ sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, FALSE);
+ sdmmc_card_print_info (stdout, MY_CARD);
+ sdmmc_host_init ();
+ */
 
 }
 
+//------------------------------------------------Thermistor_FUNCTIONS
+int32_t
+Thermistor_Value (int8_t *channel, int8_t *iterations)
+{
+  // Summing filter version
+int32_t R1 = 64000;
+int32_t R3 = 64000;
+int32_t R2;
+int16_t Vcc = 3300;
+int32_t sum = 0;
+int8_t i;
+int16_t Vo = 0;
+
+if (iterations > 40)
+{
+  printf ("Dangerously high iteration count!\n");
+  printf ("If truly needed use the active averaging filter!\n");
+}
+
+Vo = read (channel);
+R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+
+for (i = 0; i < iterations; i++)
+{
+  sum = sum + R2;
+  Vo = read (channel);
+  R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+
+}
+R2 = sum / iterations; // maybe simply bit shift by 4
+return R2;
+
+}
+
+int32_t
+Thermistor_Value_ALT (int8_t *channel, int8_t *iterations, int8_t alpha)
+{
+ // Averaging filter version
+int32_t R1 = 64000;
+int32_t R3 = 64000;
+int32_t R2;
+int16_t Vcc = 3300;
+float sum = 0;
+int8_t i;
+int16_t Vo = 0;
+
+if ((alpha >= 100) || (alpha <= 0))
+{
+  printf ("Incorrect ALPHA parameter!\n");
+  Vo = read (channel);
+  R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+  printf ("Calculating 1 Value and breaking function!!!!!\n");
+  return R2;
+  break;
+}
+
+for (i = 0; i < iterations; i++)
+{
+  Vo = read (channel);
+  R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+  sum = sum + (1 - alpha / 100) + alpha * R2 / 100;
+}
+
+return R2;
+}
+
+int32_t
+Resistance_At_Temperature (float *temperature, int16_t *BETA, int32_t *R25)
+{
+return R25 * expf (BETA * (1 / temperature - 1 / 298.15));
+}
+
+float
+Temperature_At_Resistance (int32_t *Measured_Resistance, int16_t *BETA,
+			   int32_t *R25)
+{
+return 1 / (logf (Measured_Resistance / R25) / BETA + 1 / R25);
+}
+
+float
+Kelvin_to_Celsius (float *x)
+{
+return x - 273.15;
+}
+float
+Celsius_to_Kelvin (float *x)
+{
+return x + 273.15;
+}
+
+float
+Thermistor_Temperature (int8_t channel)
+{
+int32_t Themrmistor_resistance = 0;
+float R25 = 100 * 1000;   // R at 25C
+int16_t BETA = 4450;
+int8_t BETA_temp = 25; // C
+float tempetature = -1000;
+
+Themrmistor_resistance = Thermistor_Value (channel);
+tempetature = Temperature_At_Resistance (Themrmistor_resistance, BETA, R25);
+
+return Kelvin_to_Celsius (tempetature);
+
+}
+//------------------------------------------------ADC_FUNCTIONS
+
+//------------------------------------------------BME280_FUNCTIONS
+
+//------------------------------------------------BME680_FUNCTIONS
+
+//------------------------------------------------CAN_BUS_FUNCTIONS
+
+//----------------------------------------------------------------------------------------------------
 //-----------------------------------------------MAIN LOOPS-------------------------------------------
+//----------------------------------------------------------------------------------------------------
 
 void
 app_main (void)
 {
-  while (true)
-    {
-      printf ("Hello from app_main!\n");
-      sleep (1);
-    }
+while (true)
+{
+  printf ("Hello from app_main!\n");
+  sleep (1);
+}
 }
