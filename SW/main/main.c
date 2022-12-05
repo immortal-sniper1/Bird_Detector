@@ -20,6 +20,7 @@
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
+#include <freertos/task.h>  // this is int needed for WIFi but i put it here in order to have all FreeRTOS libs in 1 place
 #include "esp_wifi.h"
 //#include "esp_log.h"
 //#include "esp_event.h"
@@ -41,6 +42,14 @@
 
 //BME280 sensor lib
 #include "lib/BME280_driver-master/bme280.h"
+
+//BME680 sensor lib
+//#include <stdio.h>
+//#include <freertos/FreeRTOS.h>
+//#include <freertos/task.h>
+#include <esp_system.h>
+#include <bme680.h>
+//#include <string.h>
 
 #define debug_lvl 1
 
@@ -75,8 +84,15 @@ const int8_t MMA8452 = 0x1C;                        // ACCELEROMETER      SENSOR
 const int8_t MAX11601 = 0x64;                       // ADC
 
 // I2C GPIO pins
-const gpio_num_t SDA_PIN = GPIO_NUM_36;
-const gpio_num_t SCL_PIN = GPIO_NUM_35;
+//const gpio_num_t SDA_PIN = GPIO_NUM_36;
+//const gpio_num_t SCL_PIN = GPIO_NUM_35;
+#define I2C_MASTER_SCL_IO 35               /*!< gpio number for I2C master clock */
+#define I2C_MASTER_SDA_IO 39               /*!< gpio number for I2C master data  */
+//400k is the max speed supported by ALL ICs used BUT some accept much higher speeds
+#define I2C_MASTER_FREQ_HZ 400*000        /*!< I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE 0                           /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE 0                           /*!< I2C master doesn't need buffer */
+int i2c_master_port = 0;
 
 // I2S GPIO pins
 const gpio_num_t SCK_PIN = GPIO_NUM_48;
@@ -121,7 +137,7 @@ char found_nets[20][20];
 
 //SD variables
 int8_t SD_bit_mode = 4;
-static const char *TAG = "example";
+static const char *TAG = "Bird_det_code";
 uint32_t SD_Speed = 20 * 1000; // in KHz 40MHz is max and only int fractions can be used 20 10 8 5 1
 //bool ddr_mode = FALSE; // if enable it requires good signal integrity , maybe later
 
@@ -243,12 +259,49 @@ Error_Logger(Error_var);
  */
 
 }
+//------------------------------------------------Filter_FUNCTIONS
+//
 
+/*
+float Low_Pas+Filter_V1( float x)
+{
+
+Vo = read (channel);
+R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+
+for (i = 0; i < iterations; i++)
+{
+  sum = sum + R2;
+  Vo = read (channel);
+  R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+
+}
+R2 = sum / iterations; // maybe simply bit shift by 4
+return R2;
+}
+
+float Low_Pas+Filter_V2( float x)
+{
+
+Vo = read (channel);
+R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+
+for (i = 0; i < iterations; i++)
+{
+  Vo = read (channel);
+  R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+  sum = sum + (1 - alpha / 100) + alpha * R2 / 100;
+}
+
+return R2;
+}
+*/
 //------------------------------------------------Thermistor_FUNCTIONS
+//
 int32_t
 Thermistor_Value (int8_t *channel, int8_t *iterations)
 {
-  // Summing filter version
+// Summing filter version
 int32_t R1 = 64000;
 int32_t R3 = 64000;
 int32_t R2;
@@ -281,7 +334,7 @@ return R2;
 int32_t
 Thermistor_Value_ALT (int8_t *channel, int8_t *iterations, int8_t alpha)
 {
- // Averaging filter version
+// Averaging filter version
 int32_t R1 = 64000;
 int32_t R3 = 64000;
 int32_t R2;
@@ -349,9 +402,35 @@ tempetature = Temperature_At_Resistance (Themrmistor_resistance, BETA, R25);
 return Kelvin_to_Celsius (tempetature);
 
 }
-//------------------------------------------------ADC_FUNCTIONS
+//
+//------------------------------------------------I2C_FUNCTIONS
+//
+static esp_err_t
+I2C_Master_Parama_Init (int32_t *I2C_MASTER_SPEED =
+I2C_MASTER_FREQ_HZ)
+{
 
+i2c_config_t MY_I2C_Config =
+{ .mode = I2C_MODE_MASTER, .sda_io_num = I2C_MASTER_SDA_IO, .sda_pullup_en =
+    GPIO_PULLUP_ENABLE, .scl_io_num = I2C_MASTER_SCL_IO, .scl_pullup_en =
+    GPIO_PULLUP_ENABLE, .master.clk_speed = I2C_MASTER_SPEED,
+// .clk_flags = 0,          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
+  };
+esp_err_t err = i2c_param_config (i2c_master_port, &MY_I2C_Config);
+if (err != ESP_OK)
+{
+  return err;
+}
+return i2c_driver_install (i2c_master_port, MY_I2C_Config.mode,
+I2C_MASTER_RX_BUF_DISABLE,
+			   I2C_MASTER_TX_BUF_DISABLE, 0);
+
+}
+//
+//------------------------------------------------ADC_FUNCTIONS
+//
 //------------------------------------------------BME280_FUNCTIONS
+//
 struct bme280_dev MY_BME280;
 int8_t rslt = BME280_OK;
 uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
@@ -395,20 +474,23 @@ MY_BME280.delay_ms = user_delay_ms;
 //
 //------------------------------------------------GPIO_FUNCTIONS
 //
-void Heater( bool *state)
+void
+Heater ( bool *state)
 {
-  gpio_set_level(heater , state);  // state can be 1 or 0
+gpio_set_level (heater, state);  // state can be 1 or 0
 }
-void Disable_chargeing( bool *state)
+void
+Disable_chargeing ( bool *state)
 {
-  gpio_set_level(charge_enable , state);
+gpio_set_level (charge_enable, state);
 }
-void GPIO_Default_Config( void)
+void
+GPIO_Default_Config (void)
 {
-  gpio_set_direction( charge_enable, GPIO_MODE_OUTPUT);
-  gpio_set_direction( heater, GPIO_MODE_OUTPUT);
-  gpio_set_pull_mode( charge_enable , GPIO_PULLDOWN_ONLY);
-  gpio_set_pull_mode( heater , GPIO_FLOATING);
+gpio_set_direction (charge_enable, GPIO_MODE_OUTPUT);
+gpio_set_direction (heater, GPIO_MODE_OUTPUT);
+gpio_set_pull_mode (charge_enable, GPIO_PULLDOWN_ONLY);
+gpio_set_pull_mode (heater, GPIO_FLOATING);
 }
 //----------------------------------------------------------------------------------------------------
 //-----------------------------------------------MAIN LOOPS-------------------------------------------
