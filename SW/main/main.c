@@ -59,7 +59,6 @@
 #include "amrwb_encoder.h"
 #include "amrnb_encoder.h"
 
-
 #define debug_lvl 1
 
 #if debug_lvl
