@@ -14,6 +14,7 @@
 #include "esp_netif.h"
 //#include "protocol_examples_common.h"  ceva eroare si scot momentan
 #include "esp_log.h"
+#include <esp_err.h>
 #include "mqtt_client.h"
 
 // WIFI libs
@@ -48,28 +49,23 @@
 //#include <freertos/FreeRTOS.h>
 //#include <freertos/task.h>
 #include <esp_system.h>
-#include "bme680.h"
+//#include "bme680.h"
 //#include <string.h>
 
-//Audio libs
-#include "driver/i2s_sdt.h"
-#include "i2s_stream.h"
-#include "raw_stream.h"
-#include "wav_encoder.h"
-#include "amrwb_encoder.h"
-#include "amrnb_encoder.h"
+/*
+ //Audio libs
+ #include "driver/i2s_sdt.h"
+ #include "i2s_stream.h"
+ #include "raw_stream.h"
+ #include "wav_encoder.h"
+ #include "amrwb_encoder.h"
+ #include "amrnb_encoder.h"
 
-#define debug_lvl 1
-
-#if debug_lvl
-#define Error_Logger(...) printf(0 __VA_OPT__(,) __VA_ARGS__)
-#else Error_Logger(...) //tf(0 __VA_OPT__(,) __VA_ARGS__)
-#endif
+ */
 
 //----------------------------------------------------------------------------------------------------
 //----------------------------------------------CONSTANTS---------------------------------------------
 //----------------------------------------------------------------------------------------------------
-
 #define MOUNT_POINT "/sdcard"
 
 // uSD card pins
@@ -226,6 +222,7 @@ uint32_t SD_Speed = 20 * 1000; // in KHz 40MHz is max and only int fractions can
 
 void SD_MMC_CONFIG_FUNCTION_v2(void)
     {
+    const char MY_TAG = "SD_MMC_CONFIG_FUNCTION_v2";
     sdmmc_card_t *MY_CARD;
     sdmmc_slot_config_t MY_SD_SLOT;
     MY_SD_SLOT.gpio_cd = SD_DETECT_PIN;
@@ -238,34 +235,29 @@ void SD_MMC_CONFIG_FUNCTION_v2(void)
     MY_SD_SLOT.d3 = SD_DATA3_PIN;
 
     Error_var = sdmmc_host_init_slot(1, MY_SD_SLOT);
-    Error_Logger(Error_var);
     //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
     //For Default Speed cards, 20MHz can be used.
     Error_var = sdmmc_host_set_card_clk(MY_SD_SLOT, SD_Speed);
-    Error_Logger(Error_var);
     Error_var = sdmmc_host_set_bus_width(MY_SD_SLOT, SD_bit_mode);
-    Error_Logger(Error_var);
     //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
     Error_var = sdmmc_host_set_bus_ddr_mode(MY_SD_SLOT, FALSE);
-    Error_Logger(Error_var);
     Error_var = sdmmc_card_print_info(stdout, MY_CARD);
-    Error_Logger(Error_var);
     Error_var = sdmmc_host_init();
-Error_Logger(Error_var);
 
-/*
- sdmmc_host_init_slot (1, MY_SD_SLOT);
- //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
- //For Default Speed cards, 20MHz can be used.
- sdmmc_host_set_card_clk (MY_SD_SLOT, SD_Speed);
- sdmmc_host_set_bus_width (MY_SD_SLOT, SD_bit_mode);
- //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
- sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, FALSE);
- sdmmc_card_print_info (stdout, MY_CARD);
- sdmmc_host_init ();
- */
 
-}
+    /*
+     sdmmc_host_init_slot (1, MY_SD_SLOT);
+     //only integer fractions of 40MHz clock can be used. For High Speed cards, 40MHz can be used.
+     //For Default Speed cards, 20MHz can be used.
+     sdmmc_host_set_card_clk (MY_SD_SLOT, SD_Speed);
+     sdmmc_host_set_bus_width (MY_SD_SLOT, SD_bit_mode);
+     //sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, ddr_mode);
+     sdmmc_host_set_bus_ddr_mode (MY_SD_SLOT, FALSE);
+     sdmmc_card_print_info (stdout, MY_CARD);
+     sdmmc_host_init ();
+     */
+
+    }
 //------------------------------------------------Filter_FUNCTIONS
 //
 
@@ -306,127 +298,145 @@ Error_Logger(Error_var);
 //------------------------------------------------Thermistor_FUNCTIONS
 //
 int32_t Thermistor_Value(int8_t *channel, int8_t *iterations)
-{
+    {
 // Summing filter version
-int32_t R1 = 64000;
-int32_t R3 = 64000;
-int32_t R2;
-int16_t Vcc = 3300;
-int32_t sum = 0;
-int8_t i;
-int16_t Vo = 0;
+    int32_t R1 = 64000;
+    int32_t R3 = 64000;
+    int32_t R2;
+    int16_t Vcc = 3300;
+    int32_t sum = 0;
+    int8_t i;
+    int16_t Vo = 0;
 
-if (iterations > 40)
-    {
-    printf("Dangerously high iteration count!\n");
-    printf("If truly needed use the active averaging filter!\n");
-    }
+    if (iterations > 40)
+	{
+	printf("Dangerously high iteration count!\n");
+	printf("If truly needed use the active averaging filter!\n");
+	}
 
-Vo = read(channel);
-R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
-
-for (i = 0; i < iterations; i++)
-    {
-    sum = sum + R2;
     Vo = read(channel);
     R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
 
-    }
-R2 = sum / iterations; // maybe simply bit shift by 4
-return R2;
+    for (i = 0; i < iterations; i++)
+	{
+	sum = sum + R2;
+	Vo = read(channel);
+	R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
 
-}
+	}
+    R2 = sum / iterations; // maybe simply bit shift by 4
+    return R2;
+
+    }
 
 int32_t Thermistor_Value_ALT(int8_t *channel, int8_t *iterations, int8_t alpha)
-{
+    {
 // Averaging filter version
-int32_t R1 = 64000;
-int32_t R3 = 64000;
-int32_t R2;
-int16_t Vcc = 3300;
-float sum = 0;
-int8_t i;
-int16_t Vo = 0;
+    int32_t R1 = 64000;
+    int32_t R3 = 64000;
+    int32_t R2;
+    int16_t Vcc = 3300;
+    float sum = 0;
+    int8_t i;
+    int16_t Vo = 0;
 
-if ((alpha >= 100) || (alpha <= 0))
-    {
-    printf("Incorrect ALPHA parameter!\n");
-    Vo = read(channel);
-    R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
-    printf("Calculating 1 Value and breaking function!!!!!\n");
+    if ((alpha >= 100) || (alpha <= 0))
+	{
+	printf("Incorrect ALPHA parameter!\n");
+	Vo = read(channel);
+	R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+	printf("Calculating 1 Value and breaking function!!!!!\n");
+	return R2;
+	break;
+	}
+
+    for (i = 0; i < iterations; i++)
+	{
+	Vo = read(channel);
+	R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
+	sum = sum + (1 - alpha / 100) + alpha * R2 / 100;
+	}
+
     return R2;
-    break;
     }
-
-for (i = 0; i < iterations; i++)
-    {
-    Vo = read(channel);
-    R2 = (Vo * R1) / (Vo - Vcc) * 1000 - R3;
-    sum = sum + (1 - alpha / 100) + alpha * R2 / 100;
-    }
-
-return R2;
-}
 
 int32_t Resistance_At_Temperature(float *temperature, int16_t *BETA,
-    int32_t *R25)
-{
-return R25 * expf(BETA * (1 / temperature - 1 / 298.15));
-}
+	int32_t *R25)
+    {
+    return R25 * expf(BETA * (1 / temperature - 1 / 298.15));
+    }
 
 float Temperature_At_Resistance(int32_t *Measured_Resistance, int16_t *BETA,
-    int32_t *R25)
-{
-return 1 / (logf(Measured_Resistance / R25) / BETA + 1 / R25);
-}
+	int32_t *R25)
+    {
+    return 1 / (logf(Measured_Resistance / R25) / BETA + 1 / R25);
+    }
 
 float Kelvin_to_Celsius(float *x)
-{
-return x - 273.15;
-}
+    {
+    return x - 273.15;
+    }
 float Celsius_to_Kelvin(float *x)
-{
-return x + 273.15;
-}
+    {
+    return x + 273.15;
+    }
 
 float Thermistor_Temperature(int8_t channel)
-{
-int32_t Themrmistor_resistance = 0;
-float R25 = 100 * 1000;   // R at 25C
-int16_t BETA = 4450;
-int8_t BETA_temp = 25; // C
-float tempetature = -1000;
+    {
+    int32_t Themrmistor_resistance = 0;
+    float R25 = 100 * 1000;   // R at 25C
+    int16_t BETA = 4450;
+    int8_t BETA_temp = 25; // C
+    float tempetature = -1000;
 
-Themrmistor_resistance = Thermistor_Value(channel);
-tempetature = Temperature_At_Resistance(Themrmistor_resistance, BETA, R25);
+    Themrmistor_resistance = Thermistor_Value(channel);
+    tempetature = Temperature_At_Resistance(Themrmistor_resistance, BETA, R25);
 
-return Kelvin_to_Celsius(tempetature);
+    return Kelvin_to_Celsius(tempetature);
 
-}
+    }
 //
 //------------------------------------------------I2C_FUNCTIONS
 //
 static esp_err_t I2C_Master_Parama_Init(void)
-{
-
-i2c_config_t MY_I2C_Config =
     {
-    .mode = I2C_MODE_MASTER, .sda_io_num =
-    I2C_MASTER_SDA_IO, .sda_pullup_en = GPIO_PULLUP_ENABLE, .scl_io_num =
-    I2C_MASTER_SCL_IO, .scl_pullup_en = GPIO_PULLUP_ENABLE, .master.clk_speed =
-	    I2C_MASTER_SPEED,
+
+    i2c_config_t MY_I2C_Config =
+	{
+		.mode = I2C_MODE_MASTER,
+		.sda_io_num =
+		I2C_MASTER_SDA_IO,
+		.sda_pullup_en = GPIO_PULLUP_ENABLE,
+		.scl_io_num =
+		I2C_MASTER_SCL_IO,
+		.scl_pullup_en = GPIO_PULLUP_ENABLE,
+		.master.clk_speed =
+		I2C_MASTER_FREQ_HZ,
 // .clk_flags = 0,          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
-	};
-esp_err_t err = i2c_param_config(i2c_master_port, &MY_I2C_Config);
-if (err != ESP_OK)
-    {
-    return err;
-    }
-return i2c_driver_install(i2c_master_port, MY_I2C_Config.mode,
-I2C_MASTER_RX_BUF_DISABLE,
-I2C_MASTER_TX_BUF_DISABLE, 0);
+	    };
+    esp_err_t err = i2c_param_config(i2c_master_port, &MY_I2C_Config);
+    if (err != ESP_OK)
+	{
+	return err;
+	}
+    return i2c_driver_install(i2c_master_port, MY_I2C_Config.mode,
+    I2C_MASTER_RX_BUF_DISABLE,
+    I2C_MASTER_TX_BUF_DISABLE, 0);
 
-}
+    }
+
+void I2C_Configure_V2(void)
+    {
+    i2c_config_t MY_I2C_Config;
+    MY_I2C_Config.mode = I2C_MODE_MASTER;
+    MY_I2C_Config.sda_io_num = I2C_MASTER_SDA_IO;
+    MY_I2C_Config.scl_io_num = I2C_MASTER_SCL_IO;
+    MY_I2C_Config.sda_pullup_en = GPIO_PULLUP_ENABLE;
+    MY_I2C_Config.scl_pullup_en = GPIO_PULLUP_ENABLE;
+    MY_I2C_Config.master.clk_speed = I2C_MASTER_FREQ_HZ;
+    i2c_param_config(I2C_NUM_0, &MY_I2C_Config);
+    i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+    }
 //
 //------------------------------------------------ADC_FUNCTIONS
 //
@@ -472,58 +482,58 @@ MY_BME280.delay_ms = user_delay_ms;
 //------------------------------------------------BME680_FUNCTIONS
 //
 void bme680_test(void)
-{
-ESP_ERROR_CHECK(i2cdev_init());
+    {
+    ESP_ERROR_CHECK(i2cdev_init());
 
-bme680_t MY_BME680_Sensor;
-memset(&MY_BME680_Sensor, 0, sizeof(bme680_t));
+    bme680_t MY_BME680_Sensor;
+    memset(&MY_BME680_Sensor, 0, sizeof(bme680_t));
 
-ESP_ERROR_CHECK(
-	bme680_init_desc(&MY_BME680_Sensor, BME680, i2c_master_port, I2C_MASTER_SDA_IO, I2C_MASTER_SCL_IO));
+    ESP_ERROR_CHECK(
+	    bme680_init_desc(&MY_BME680_Sensor, BME680, i2c_master_port, I2C_MASTER_SDA_IO, I2C_MASTER_SCL_IO));
 
 // init the MY_BME680_Sensor
-ESP_ERROR_CHECK(bme680_init_MY_BME680_Sensor(&MY_BME680_Sensor));
+    ESP_ERROR_CHECK(bme680_init_MY_BME680_Sensor(&MY_BME680_Sensor));
 
 // Changes the oversampling rates to 4x oversampling for temperature
 // and 2x oversampling for humidity. Pressure measurement is skipped.
-bme680_set_oversampling_rates(&MY_BME680_Sensor, BME680_OSR_4X, BME680_OSR_2X,
-	BME680_OSR_2X);
+    bme680_set_oversampling_rates(&MY_BME680_Sensor, BME680_OSR_4X,
+	    BME680_OSR_2X, BME680_OSR_2X);
 
 // Change the IIR filter size for temperature and pressure to 7.
-bme680_set_filter_size(&MY_BME680_Sensor, BME680_IIR_SIZE_7);
+    bme680_set_filter_size(&MY_BME680_Sensor, BME680_IIR_SIZE_7);
 
 // Change the heater profile 0 to 200 degree Celsius for 100 ms.
-bme680_set_heater_profile(&MY_BME680_Sensor, 0, 200, 100);
-bme680_use_heater_profile(&MY_BME680_Sensor, 0);
+    bme680_set_heater_profile(&MY_BME680_Sensor, 0, 200, 100);
+    bme680_use_heater_profile(&MY_BME680_Sensor, 0);
 
 // Set ambient temperature to 10 degree Celsius
-bme680_set_ambient_temperature(&MY_BME680_Sensor, 10);
+    bme680_set_ambient_temperature(&MY_BME680_Sensor, 10);
 
 // as long as MY_BME680_Sensor configuration isn't changed, duration is constant
-uint32_t duration;
-bme680_get_measurement_duration(&MY_BME680_Sensor, &duration);
+    uint32_t duration;
+    bme680_get_measurement_duration(&MY_BME680_Sensor, &duration);
 
-}
+    }
 
 //------------------------------------------------CAN_BUS_FUNCTIONS
 //
 //------------------------------------------------GPIO_FUNCTIONS
 //
 void Heater( bool *state)
-{
-gpio_set_level(heater, state);  // state can be 1 or 0
-}
+    {
+    gpio_set_level(heater, state);  // state can be 1 or 0
+    }
 void Disable_chargeing( bool *state)
-{
-gpio_set_level(charge_enable, state);
-}
+    {
+    gpio_set_level(charge_enable, state);
+    }
 void GPIO_Default_Config(void)
-{
-gpio_set_direction(charge_enable, GPIO_MODE_OUTPUT);
-gpio_set_direction(heater, GPIO_MODE_OUTPUT);
-gpio_set_pull_mode(charge_enable, GPIO_PULLDOWN_ONLY);
-gpio_set_pull_mode(heater, GPIO_FLOATING);
-}
+    {
+    gpio_set_direction(charge_enable, GPIO_MODE_OUTPUT);
+    gpio_set_direction(heater, GPIO_MODE_OUTPUT);
+    gpio_set_pull_mode(charge_enable, GPIO_PULLDOWN_ONLY);
+    gpio_set_pull_mode(heater, GPIO_FLOATING);
+    }
 
 //------------------------------------------------I2S_FUNCTIONS
 //
@@ -532,7 +542,7 @@ i2s_chan_handle_t rx_handle;
  * This helper macro is defined in 'i2s_common.h' and shared by all the i2s communication mode.
  * It can help to specify the I2S role, and port id */
 i2s_chan_config_t chan_cfg = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_AUTO,
-    I2S_ROLE_MASTER);
+	I2S_ROLE_MASTER);
 /* Allocate a new rx channel and get the handle of this channel */
 i2s_new_channel(&chan_cfg, NULL, &rx_handle);
 
@@ -540,22 +550,22 @@ i2s_new_channel(&chan_cfg, NULL, &rx_handle);
  * These two helper macros is defined in 'i2s_std.h' which can only be used in STD mode.
  * They can help to specify the slot and clock configurations for initialization or updating */
 i2s_std_config_t std_cfg =
-{
-.clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(48000), .slot_cfg =
-	I2S_STD_MSB_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_32BIT,
-		I2S_SLOT_MODE_STEREO), .gpio_cfg =
     {
-    .mclk = I2S_GPIO_UNUSED,  // 12MHz crystal conected here
-	    .bclk = SCK_PIN,
-	    .ws = WS_PIN,
-	    .dout = I2S_GPIO_UNUSED,
-	    .din = SD_PIN,
-	    .invert_flags =
-		{
-		.mclk_inv = false, .bclk_inv = false, .ws_inv = false,
-		},
-    },
-};
+    .clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(48000), .slot_cfg =
+	    I2S_STD_MSB_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_32BIT,
+		    I2S_SLOT_MODE_STEREO), .gpio_cfg =
+	{
+	.mclk = I2S_GPIO_UNUSED,  // 12MHz crystal conected here
+		.bclk = SCK_PIN,
+		.ws = WS_PIN,
+		.dout = I2S_GPIO_UNUSED,
+		.din = SD_PIN,
+		.invert_flags =
+		    {
+		    .mclk_inv = false, .bclk_inv = false, .ws_inv = false,
+		    },
+	},
+    };
 /* Initialize the channel */
 i2s_channel_init_std_mode(rx_handle, &std_cfg);
 
@@ -580,18 +590,18 @@ i2s_del_channel( rx_handle);
 //-----------------------------------------------MAIN LOOPS-------------------------------------------
 //----------------------------------------------------------------------------------------------------
 void app_main(void)
-{
-while (true)
     {
-    printf("Hello from app_main!\n");
-    bme680_values_float_t values;
+    while (true)
+	{
+	printf("Hello from app_main!\n");
+	bme680_values_float_t values;
 
-    // get the results and do something with them
-    if (bme680_get_results_float(&MY_BME680_Sensor, &values) == ESP_OK)
-	printf("BME680 Sensor: %.2f °C, %.2f %%, %.2f hPa, %.2f Ohm\n",
-		values.temperature, values.humidity, values.pressure,
-		values.gas_resistance);
+	// get the results and do something with them
+	if (bme680_get_results_float(&MY_BME680_Sensor, &values) == ESP_OK)
+	    printf("BME680 Sensor: %.2f °C, %.2f %%, %.2f hPa, %.2f Ohm\n",
+		    values.temperature, values.humidity, values.pressure,
+		    values.gas_resistance);
 
-    sleep(1);
+	sleep(1);
+	}
     }
-}
