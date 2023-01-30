@@ -1,1 +1,0 @@
-"./main.obj" "./USCI_I2C.obj" "./TCA9554A.obj" "./TCA9539.obj" "./TCA9535.obj" "./TCA6424A.obj" "./TCA6416A.obj" "./TCA6408A.obj" -l"libc.a" "../lnk_msp430g2553.cmd" 
