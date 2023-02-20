@@ -9,10 +9,14 @@
 #define MAIN_PIN_ASSIGNMENTS_H_
 
 
+#include "driver/gpio.h"
+#include <stdio.h>
+#include "sdkconfig.h"
+
 #define MOUNT_POINT "/sdcard"
 
 // uSD card pins
-static static const gpio_num_t SD_DATAO_PIN = GPIO_NUM_6;
+static const gpio_num_t SD_DATAO_PIN = GPIO_NUM_6;
 static const gpio_num_t SD_DATA1_PIN = GPIO_NUM_5;
 static const gpio_num_t SD_DATA2_PIN = GPIO_NUM_17;
 static const gpio_num_t SD_DATA3_PIN = GPIO_NUM_16;
